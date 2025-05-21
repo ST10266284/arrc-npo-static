@@ -1,0 +1,4 @@
+/api/*  /.netlify/functions/:splat  200
+/volunteer  /ThankYou.html  200
+/contact    /ThankYou.html  200
+/*          /index.html     200
