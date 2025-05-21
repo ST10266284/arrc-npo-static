@@ -37,14 +37,19 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             try {
-                // Submit form to Netlify
+                // Prepare form data for Netlify
                 const formData = new FormData(form);
-                const response = await fetch(form.action || "/", {
+                console.log("Submitting form:", form.getAttribute("name"), Object.fromEntries(formData));
+
+                // Submit to Netlify's form endpoint
+                const response = await fetch("/", {
                     method: "POST",
-                    body: formData
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams(formData).toString()
                 });
 
                 if (response.ok) {
+                    console.log("Form submitted successfully:", form.getAttribute("name"));
                     // Show thank-you message
                     const thankYouMessage = form.parentElement.querySelector("#thank-you-message");
                     if (thankYouMessage) {
@@ -59,6 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         }, 5000);
                     }
                 } else {
+                    console.error("Form submission failed:", response.status, response.statusText);
                     alert("There was an error submitting the form. Please try again.");
                 }
             } catch (error) {
