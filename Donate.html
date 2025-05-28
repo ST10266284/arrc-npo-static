@@ -50,49 +50,79 @@
 
     <main class="container my-5">
         <div class="animate__animated animate__fadeInDown">
-            <h2 class="animate__animated animate__flipInX">Support ARRC’s Mission</h2>
-            <p class="animate__animated animate__slideInUp">Your donations help us provide food, medical care, and a
-                safe haven for rescued cats. Choose an item below or view our fund breakdown to see how your
-                contribution makes a difference.</p>
+            <h2 class="animate__animated animate__flipInX">Support ARRC</h2>
+            <p class="animate__animated animate__slideInUp">Your donations help us provide food, medical care, and
+                shelter for our rescued animals. Every little bit counts!</p>
             <div class="cta-banner animate__animated animate__tada">
-                <p>Every dollar saves a life!</p>
+                <p>Make a difference today!</p>
             </div>
-            <h3 class="animate__animated animate__flipInX">Fund Breakdown</h3>
-            <img src="images/fund-breakdown.png" alt="Fund Breakdown"
-                class="img-fluid mb-4 fund-image animate__animated animate__zoomInDown" />
-            <h3 class="animate__animated animate__flipInX">Donate an Item</h3>
+            <h3 class="animate__animated animate__flipInX">Donate Specific Items</h3>
             <div class="row">
                 <div class="col-md-4 col-sm-6 mb-4">
                     <div class="card animate__animated animate__zoomInDown">
                         <div class="card-body">
-                            <h5 class="card-title">Cat Food ($20)</h5>
-                            <p class="card-text">High-quality dry food for kittens.</p>
-                            <a href="BankingDetails.html"
-                                class="btn btn-primary animate__animated animate__swing">Donate Now</a>
+                            <h5 class="card-title">Cat Food</h5>
+                            <p class="card-text">R180 provides food for one cat for a month.</p>
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                                <input type="hidden" name="cmd" value="_donations" />
+                                <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL" />
+                                <input type="hidden" name="currency_code" value="ZAR" />
+                                <input type="hidden" name="amount" value="180" />
+                                <input type="hidden" name="item_name" value="Cat Food Donation" />
+                                <button type="submit" class="btn btn-primary">Donate R180</button>
+                            </form>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 mb-4">
                     <div class="card animate__animated animate__zoomInDown">
                         <div class="card-body">
-                            <h5 class="card-title">Litter ($10)</h5>
-                            <p class="card-text">Clumping cat litter for hygiene.</p>
-                            <a href="BankingDetails.html"
-                                class="btn btn-primary animate__animated animate__swing">Donate Now</a>
+                            <h5 class="card-title">Medical Supplies</h5>
+                            <p class="card-text">R360 covers vaccinations for one cat.</p>
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                                <input type="hidden" name="cmd" value="_donations" />
+                                <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL" />
+                                <input type="hidden" name="currency_code" value="ZAR" />
+                                <input type="hidden" name="amount" value="360" />
+                                <input type="hidden" name="item_name" value="Medical Supplies Donation" />
+                                <button type="submit" class="btn btn-primary">Donate R360</button>
+                            </form>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 mb-4">
                     <div class="card animate__animated animate__zoomInDown">
                         <div class="card-body">
-                            <h5 class="card-title">Medical Supplies ($50)</h5>
-                            <p class="card-text">Vaccines and medications for rescued cats.</p>
-                            <a href="BankingDetails.html"
-                                class="btn btn-primary animate__animated animate__swing">Donate Now</a>
+                            <h5 class="card-title">Shelter Maintenance</h5>
+                            <p class="card-text">R900 helps maintain our cat runs.</p>
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                                <input type="hidden" name="cmd" value="_donations" />
+                                <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL" />
+                                <input type="hidden" name="currency_code" value="ZAR" />
+                                <input type="hidden" name="amount" value="900" />
+                                <input type="hidden" name="item_name" value="Shelter Maintenance Donation" />
+                                <button type="submit" class="btn btn-primary">Donate R900</button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
+            <h3 class="animate__animated animate__flipInX">Custom Donation</h3>
+            <p class="animate__animated animate__slideInUp">Enter any amount to support our cause.</p>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_donations" />
+                <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL" />
+                <input type="hidden" name="currency_code" value="ZAR" />
+                <input type="hidden" name="item_name" value="Custom Donation" />
+                <div class="mb-3">
+                    <label for="customAmount" class="form-label">Amount (ZAR)</label>
+                    <input type="number" class="form-control" id="customAmount" name="amount" min="1" required />
+                    <div class="invalid-feedback">Please enter a valid amount.</div>
+                </div>
+                <button type="submit" class="btn btn-primary animate__animated animate__swing">Donate Now</button>
+            </form>
+            <p class="animate__animated animate__slideInUp mt-3">Prefer to donate via EFT? View our <a
+                    href="BankingDetails.html">Banking Details</a>.</p>
         </div>
     </main>
 

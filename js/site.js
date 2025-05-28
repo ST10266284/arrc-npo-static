@@ -4,21 +4,36 @@ document.addEventListener("DOMContentLoaded", () => {
     particles.forEach(particle => {
         const x = Math.random() * window.innerWidth;
         const y = Math.random() * window.innerHeight;
-        const size = Math.random() * 5 + 2;
+        const size = particle.size;
         particle.style.left = `${x}px`;
         particle.style.top = `${y}px`;
         particle.style.width = `${size}px`;
         particle.style.height = `${size}px`;
 
-        const duration = Math.random() * 20 + 10;
+        const duration = Math.random() * 20 + 5;
         particle.style.animationDuration = `${duration}s`;
     });
 
     // Form Validation and Submission
+    let submitted = false;
+    window.showThankYou = function (formId) {
+        const form = document.getElementById(`${formId}-form`);
+        const thankYouMessage = form.parentElement.querySelector("#thank-you-message");
+        if (thankYouMessage && submitted) {
+            thankYouMessage.classList.remove("d-none");
+            form.reset();
+            thankYouMessage.scrollIntoView({ behavior: "smooth" });
+            setTimeout(() => {
+                thankYouMessage.classList.add("d-none");
+            }, 5000);
+            submitted = false;
+        }
+    };
+
     const forms = document.querySelectorAll("form[data-netlify='true']");
     forms.forEach(form => {
-        form.addEventListener("submit", async (event) => {
-            event.preventDefault();
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
 
             // Client-side validation
             let isValid = true;
@@ -36,41 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            try {
-                // Prepare form data for Netlify
-                const formData = new FormData(form);
-                console.log("Submitting form:", form.getAttribute("name"), Object.fromEntries(formData));
-
-                // Submit to Netlify's form endpoint
-                const response = await fetch("/", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                    body: new URLSearchParams(formData).toString()
-                });
-
-                if (response.ok) {
-                    console.log("Form submitted successfully:", form.getAttribute("name"));
-                    // Show thank-you message
-                    const thankYouMessage = form.parentElement.querySelector("#thank-you-message");
-                    if (thankYouMessage) {
-                        thankYouMessage.classList.remove("d-none");
-                        // Reset form
-                        form.reset();
-                        // Scroll to message
-                        thankYouMessage.scrollIntoView({ behavior: "smooth" });
-                        // Hide message after 5 seconds
-                        setTimeout(() => {
-                            thankYouMessage.classList.add("d-none");
-                        }, 5000);
-                    }
-                } else {
-                    console.error("Form submission failed:", response.status, response.statusText);
-                    alert("There was an error submitting the form. Please try again.");
-                }
-            } catch (error) {
-                console.error("Form submission error:", error);
-                alert("There was an error submitting the form. Please try again.");
-            }
+            // Mark as submitted and submit form
+            submitted = true;
+            form.submit();
         });
     });
 });

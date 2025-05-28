@@ -56,7 +56,7 @@
             <div class="cta-banner animate__animated animate__tada">
                 <p>Join our mission to save cats!</p>
             </div>
-            <form id="contact-form" name="contact" method="POST" data-netlify="true">
+            <form id="contact-form" name="contact" method="POST" data-netlify="true" target="hidden_iframe">
                 <input type="hidden" name="form-name" value="contact" />
                 <div class="mb-3">
                     <label for="Name" class="form-label">Name</label>
@@ -70,12 +70,14 @@
                 </div>
                 <div class="mb-3">
                     <label for="Message" class="form-label">Message</label>
-                    <textarea class="form-control" id="Message" name="Message" required></textarea>
+                    <textarea class="form-control" id="Message" name="Message" required rows="4"></textarea>
                     <div class="invalid-feedback">Please enter a message.</div>
                 </div>
                 <button type="submit" class="btn btn-primary animate__animated animate__swing">Send</button>
             </form>
-            <div id="thank-you-message" class="alert alert-success mt-3 d-none animate__animated animate__fadeInUp">
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display: none;"
+                onload="if(submitted) {showThankYou('contact');}"></iframe>
+            <div id="thank-you-message" class="alert alert-success mt-3ima__fadeInUp">
                 <strong>Thank You!</strong> Your message has been received. We’ll get back to you soon!
             </div>
         </div>
