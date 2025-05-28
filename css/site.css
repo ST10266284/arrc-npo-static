@@ -10,7 +10,7 @@ body {
 }
 
 .navbar {
-  background-color: rgba(44, 53, 54, 0.9);
+  background-color: rgba(44, 58, 54, 0.9);
 }
 
 .navbar-brand img {
@@ -63,17 +63,28 @@ h2 {
 }
 
 .card {
-  background-color: #2A2F30;
-  /* Match lighter background */
+  background-color: #3A3F41;
+  /* Darker gray for contrast */
   border: 1px solid #F05454;
+  transition: transform 0.3s ease;
+  /* Smooth hover transition */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  /* Slide up on hover */
 }
 
 .card-img-top.cat-image {
   width: 100%;
   height: 300px;
-  /* Increased height for full cat face */
+  /* For full cat face */
   object-fit: cover;
-  /* Ensure full face visibility */
+}
+
+.card-body {
+  color: #fff;
+  /* White text for readability */
 }
 
 footer {
@@ -89,19 +100,18 @@ footer {
   width: 100%;
   height: 100%;
   z-index: -1;
-  overflow: hidden;
   display: block !important;
-  /* Ensure visibility on all devices */
+  /* Ensure visibility */
 }
 
 .particle {
   position: absolute;
   background: rgba(240, 84, 84, 0.7);
-  /* Reddish particles */
+  /* Reddish, distinct */
   border-radius: 50%;
   animation: float linear infinite;
-  display: block;
-  /* Ensure particles show on mobile */
+  display: inline-block;
+  /* Ensure particles render */
 }
 
 @keyframes float {
@@ -133,7 +143,7 @@ footer {
 
   .card-img-top.cat-image {
     height: 250px;
-    /* Slightly smaller on mobile but still shows full face */
+    /* Adjusted for mobile */
   }
 
   .particles,

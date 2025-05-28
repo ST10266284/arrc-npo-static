@@ -1,36 +1,25 @@
 ﻿// Particle Animation
 document.addEventListener("DOMContentLoaded", () => {
     const particles = document.querySelectorAll(".particle");
-    particles.forEach(particle => {
-        const x = Math.random() * window.innerWidth;
-        const y = Math.random() * window.innerHeight;
-        const size = particle.size;
-        particle.style.left = `${x}px`;
-        particle.style.top = `${y}px`;
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
+    if (particles.length === 10) {
+        particles.forEach(particle => {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            const size = Math.random() * 5 + 2; // Random size 2-7px
+            particle.style.left = `${x}px`;
+            particle.style.top = `${y}px`;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
 
-        const duration = Math.random() * 20 + 5;
-        particle.style.animationDuration = `${duration}s`;
-    });
+            const duration = Math.random() * 20 + 10; // 10-30s
+            particle.style.animationDuration = `${duration}s`;
+        });
+    } else {
+        console.error("Expected 10 particles, found:", particles.length);
+    }
 
-    // Form Validation and Submission
-    let submitted = false;
-    window.showThankYou = function (formId) {
-        const form = document.getElementById(`${formId}-form`);
-        const thankYouMessage = form.parentElement.querySelector("#thank-you-message");
-        if (thankYouMessage && submitted) {
-            thankYouMessage.classList.remove("d-none");
-            form.reset();
-            thankYouMessage.scrollIntoView({ behavior: "smooth" });
-            setTimeout(() => {
-                thankYouMessage.classList.add("d-none");
-            }, 5000);
-            submitted = false;
-        }
-    };
-
-    const forms = document.querySelectorAll("form[data-netlify='true']");
+    // Form Handling
+    const forms = document.querySelectorAll("form[id$='-form']");
     forms.forEach(form => {
         form.addEventListener("submit", (e) => {
             e.preventDefault();
@@ -51,9 +40,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // Mark as submitted and submit form
-            submitted = true;
-            form.submit();
+            // Show thank-you message
+            const thankYouMessage = form.parentElement.querySelector("#thank-you-message");
+            if (thankYouMessage) {
+                thankYouMessage.classList.remove("d-none");
+                form.reset();
+                thankYouMessage.scrollIntoView({ behavior: "smooth" });
+                setTimeout(() => {
+                    thankYouMessage.classList.add("d-none");
+                }, 5000);
+            }
         });
     });
 });
